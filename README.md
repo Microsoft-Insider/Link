@@ -1,2 +1,2 @@
-# Microsoft Files Download Server
-© 2019 Microsoft Corporation
+# Files Download Link
+© 2019 LOINGS
