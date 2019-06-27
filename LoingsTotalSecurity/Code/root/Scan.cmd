@@ -62,7 +62,7 @@ Call ScanHash.dll.cmd "%SP.Path%"					%=扫描引擎=%
 If "%B%"=="True" (
 	Echo. 哈希引擎检测到威胁
 	Set "Safe=构成威胁，已处理。"
-	Call "%~dp0Deleter.cmd" "%SP.Path%"				%=强制删除并移动到隔离区=%
+	Call "%~dp0Deleter.cmd" "%SP.Path%"			%=强制删除并移动到隔离区=%
 	Goto :UE
 )
 Set /p="脱壳解密 " <nul
@@ -70,9 +70,9 @@ Call Shell.dll.cmd "%SP.Path%" >nul 2>nul				%=解密脱壳=%
 Call ActiveDefenseIni.cmd >nul 2>nul					%=DEBUG=%
 Set /p="权限分析 " <nul
 Call Permissions.dll.cmd Ver "%~dp0Temp\decrypt_code.tmp" >nul		%=检测权限要求=%
-Cd /d "%~dp0"								%=切换工作目录=%
+Cd /d "%~dp0"							%=切换工作目录=%
 Set /p="行为分析 " <nul
-Call "%~dp0Variable\OutSetVar.tmp.bat"					%=读取行为列表=%
+Call "%~dp0Variable\OutSetVar.tmp.bat"				%=读取行为列表=%
 Call "%~dp0BehavioralLib\Tick.1.cmd" "%~dp0Temp\decrypt_code.tmp"	%=分析行为=%
 If "!Warnning.Level.Num!"=="" Echo.Not Found Variable. - Warnning.Level.Num = ? &&Pause
 If !Warnning.Level.Num! GEQ 8 (
@@ -135,33 +135,15 @@ Echo.  0. 返回
 Choice /C abcdefghijklmnopqrstuvwxyz0 /N /M ">选择："
 If Errorlevel 27 Goto :Eof
 Echo.Loading...
-If Errorlevel 26 (Set "D=Z:"&& Goto Search
-) else If Errorlevel 25 	(Set "D=Y:"&& Goto Search
-) else If Errorlevel 24 	(Set "D=X:"&& Goto Search
-) else If Errorlevel 23 	(Set "D=W:"&& Goto Search
-) else If Errorlevel 22 	(Set "D=V:"&& Goto Search
-) else If Errorlevel 21 	(Set "D=U:"&& Goto Search
-) else If Errorlevel 20 	(Set "D=T:"&& Goto Search
-) else If Errorlevel 19 	(Set "D=S:"&& Goto Search
-) else If Errorlevel 18 	(Set "D=R:"&& Goto Search
-) else If Errorlevel 17 	(Set "D=Q:"&& Goto Search
-) else If Errorlevel 16 	(Set "D=P:"&& Goto Search
-) else If Errorlevel 15 	(Set "D=O:"&& Goto Search
-) else If Errorlevel 14 	(Set "D=N:"&& Goto Search
-) else If Errorlevel 13 	(Set "D=M:"&& Goto Search
-) else If Errorlevel 12 	(Set "D=L:"&& Goto Search
-) else If Errorlevel 11 	(Set "D=K:"&& Goto Search
-) else If Errorlevel 10 	(Set "D=J:"&& Goto Search
-) else If Errorlevel 9 		(Set "D=I:"&& Goto Search
-) else If Errorlevel 8 		(Set "D=H:"&& Goto Search
-) else If Errorlevel 7 		(Set "D=G:"&& Goto Search
-) else If Errorlevel 6 		(Set "D=F:"&& Goto Search
-) else If Errorlevel 5 		(Set "D=E:"&& Goto Search
-) else If Errorlevel 4 		(Set "D=D:"&& Goto Search
-) else If Errorlevel 3 		(Set "D=C:"&& Goto Search
-) else If Errorlevel 2 		(Set "D=B:"&& Goto Search
-) else If Errorlevel 1 		(Set "D=A:"&& Goto Search
-) else If Errorlevel 0 		Echo.Error - 无效的ERRORLEVEL值。
+For %%a in (
+	26:Z 25:Y 24:X 23:W 22:V 21:U 20:T 19:S 18:R 17:Q
+	16:P 15:O 14:N 13:M 12:L 11:K 10:J 9:I 8:H 7:G 6:F
+	5:E 4:D 3:C 2:B 1:A
+) do For /f "tokens=1,* delims=:" %%b in ("%%a") do (
+	If "%Choice%"=="%%b" (
+		Set "D=%%c:"
+		Goto Search
+	)
 )
 Goto :Auto
 :Search
@@ -363,5 +345,5 @@ Set LOINGS-SA_Safe=NORMAL'
 Set LOINGS-SA_MinEnv=6.1'
 Set LOINGS-SA_Writter=LOINGS_Corporation_O1'
 Set LOINGS-SA_PublicKey=87959f0338d6017ea269a2d63b3a58d1'
-Set LOINGS-SA_PrivateVer=07c3b7d5ffa1cfa3a18c86c281bb710797a9c8ffd06270814acb6e2897158b8f'
-Set LOINGS-SA_VerCode=0f81b0c34af26fdec49d000ba3b2bf0c344b05dd5d1cdb869b22a5f4559c0bf1'
+Set LOINGS-SA_PrivateVer=668d830ce501bf962fa76b843258e3f0620a3e210d7db0deeeb0add8b78194bf'
+Set LOINGS-SA_VerCode=88570763fd795e4219b714b74c2a94bc767b79666fe3962977b2ffa152127586'

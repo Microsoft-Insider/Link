@@ -96,8 +96,8 @@ Timeout /t 1 >nul
 	Set /a "Killed=%KilledOne%+%KilledTwo%+%KilledThree%+%KilledFour%"
 	Set /a "Killed2=%KilledOne%+%KilledTwo%+%KilledThree%+%KilledTwo%+4"
 	Set /a "WarnP=%WarnPOne%+%WarnPTwo%+%WarnPThree%+%WarnPFour%"
-If !Kiiled2! GEQ !WarnP! Goto :End
-Goto :Op
+	Timeout /t 10 >nul
+Goto :End
 
 :End
 Del "Temp\*.run.bat" "Temp\*.lts" >nul 2>nul
@@ -137,5 +137,5 @@ Set LOINGS-SA_Safe=NORMAL'
 Set LOINGS-SA_MinEnv=6.1'
 Set LOINGS-SA_Writter=LOINGS_Corporation_O1'
 Set LOINGS-SA_PublicKey=87959f0338d6017ea269a2d63b3a58d1'
-Set LOINGS-SA_PrivateVer=0c0d1d1317444d729064aa65b23fce55329d87a600b1c37f1d8c99bd62a3def5'
-Set LOINGS-SA_VerCode=6346b141fe9206183da314f8d3330db1e5cf293b687aa8f28a57f9b2658ebffc'
+Set LOINGS-SA_PrivateVer=2c67f5268bb148b7a2d63324b365312ab98d2e763dbe2e060f595fe1e41eae5d'
+Set LOINGS-SA_VerCode=e816179f45ab7fd80dc7eb54196123587b4025a7be379f5bdddf965812118bf4'
