@@ -1,5 +1,6 @@
 Set "VEH=1"
 Set "VEB=2"
-Set "LastUpEngineTime=1:05 2019/6/22"
+Set "LastUpEngineTime=12:30 2019/6/27"
+Set "ServerLibraryVer=19062701"
 Set "LocalVirusLibNum=83"
-Set "LocalHashLibNum=98"
+Set "LocalHashLibNum=99"

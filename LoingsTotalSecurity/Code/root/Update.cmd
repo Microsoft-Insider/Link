@@ -1,65 +1,92 @@
 @(
 	Echo off
 	Cd /d "%~dp0"
-	Set "DLR=cscript /nologo Modules\multiDl.vbs"		%=Downloader=%
-	Set "SLO=https://hacksoft.icoc.me/col.jsp?id=114"       %=Server_Link=%
 	Set "RAR=Modules\Rar.exe x -y -mt2"			%=WinRAR_Path=%
-	Set "SelfVer=3"						%=Self_Version=%
+	Set "SelfVer=4"					%=Self_Version=%
 	Set "GKW=%~1"
-	If exist "Variable\Run.Info.3.bat" Call Variable\Run.Info.3.bat
+	SetLocal EnableDelayedExpansion
+	If exist "%~dp0Variable\Run.Info.3.bat" Call "%~dp0Variable\Run.Info.3.bat"
 )
 Set "LSN="&Set "PSN="
 Taskkill /f /pid %LTS.Run.Process.Id.OS% >nul 2>nul
-If exist "Acl.Unlock.dll.cmd" Call Acl.Unlock.dll.cmd >nul 2>nul
+If exist "%~dp0Acl.Unlock.dll.cmd" Call "%~dp0Acl.Unlock.dll.cmd" >nul 2>nul
 Del /q "*Up.rar" >nul 2>nul
 If /i "%~1"=="User" Goto :User
 :First
 ::获取服务器上的信息
 (
-	Del /q "LTSVer.cmd" >nul 2>nul
-	Call Download.dll.cmd LTSVer LTSVer.cmd
-	Call LTSVer.cmd
-	Call Modules\LibVer.cmd			%=本地版本=%
-	Call Modules\ProVer.cmd			%=本地版本=%
+	Del /q ""%~dp0LTSVer.cmd" >nul 2>nul
+	Call "%~dp0Download.dll.cmd" Server LTSVer.cmd "%~dp0LTSVer.cmd"
+	If eixst "%~dp0LTSVer.cmd" (
+		Call "%~dp0LTSVer.cmd"
+	) else Goto :Err_1
+	If eixst "%~dp0Modules\LibVer.cmd" Call "%~dp0Modules\LibVer.cmd"	%=本地版本=%
+	If eixst "%~dp0Modules\ProVer.cmd" Call "%~dp0Modules\ProVer.cmd"	%=本地版本=%
 )
 Goto :%GKW%
 
 :Auto
-Call :Library
-Call :Program
-Call :Self
-Start /i /low /min "Loings Total Security" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
-Goto :Exit
+Set "min=/min"
+Call :Update
+Start /i /low /min "Loings Total Security !Random!" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
+Exit
 
-:Library
-If "%Force1%"=="0" (					%=判断是否更新=%
-	If %ServerVirusLibNum% LEQ %LocalVirusLibNum% (
-		If %ServerHashLibNum% LEQ %LocalHashLibNum% Goto :Eof
+:Update
+If "%Force1%"=="0" (						%=判断是否更新=%
+	If !ServerVersionBuild! LEQ !LocalVersionBuild! (
+		If !UpSelfVer! LEQ !SelfVer! (
+			Goto :Eof
+		) else Set "PSN=1"
 	)
-) else Set "LSN=1"
-Call Download.dll.cmd LibUp LibUp.rar >nul 2>nul	%=下载更新=%
-%RAR% LibUp.rar .\ >nul 2>nul				%=解压更新=%
-Goto :Eof
-
-:Program
-If "%Force2%"=="0" (					%=判断是否更新=%
-	If %ServerVersionBuild% LEQ %LocalVersionBuild% Goto :Eof
-) else Set "PSN=1"
-Call Download.dll.cmd ProUp ProUp.rar >nul 2>nul	%=下载更新=%
-%RAR% ProUp.rar .\ >nul 2>nul				%=解压更新=%
+)
+::开始更新
+:UpCon
+For /f "usebackq tokens=1,2* delims==;" %%a in (`Set Update.%LocalVersionBuild%toNew`) do (
+	If /i "%%~b"=="Del" Del /f /q "%~dp0%%~c"
+	If /i "%%~b"=="Rd" Rd /s /q "%~dp0%%~c"
+	If /i "%%~b"=="Same" (
+		If not "!LocalVersionBuild!"=="%%~c" (
+			Set "LocalVersionBuild=%%~c"
+			Goto :Program
+		)
+	)
+	If /i "%%~b"=="Self" (
+		If !UpSelfVer! GTR !SelfVer! (
+			Goto :Self
+		)
+	)
+	If /i "%%~b"=="Server" (
+		Call Download.dll.cmd  %%b "%%~c" "%~dp0%%~c"
+		If "%%~xc"==".rar" (
+			%RAR% "%~dp0%%~c" "%~dp0"
+		)
+	)
+	If /i "%%~b"=="Code" (
+		Call Download.dll.cmd  %%b "%%~c" "..\%%~c"
+		If "%%~xc"==".rar" (
+			%RAR% "..\%%~c" ..\
+		)
+	)
+) >nul 2>nul
+Set "min="
+If "%Force2%"=="0" (						%=判断是否更新=%
+	If !ServerLibraryVer! LEQ !LocalLibraryVer! (
+		Call Download.dll.cmd Code "root\Library\Lib.SHA256_1.vsh" "%~dp0Library\Lib.SHA256_1.vsh"
+		Call Download.dll.cmd Code "root\BehavioralLib\Tick.1.cmd" "%~dp0BehavioralLib\Tick.1.cmd"
+		Call Download.dll.cmd Code "root\Modules\LibVer.cmd" "%~dp0BehavioralLib\LibVer.cmd"
+	) else Set "LSN=1"
+)
 Goto :Eof
 
 :Self
-If %UpSelfVer% LEQ %SelfVer% Goto :Eof			%=判断是否需要自我更新=%
-Call Download.dll.cmd UpSelf UpSelf.rar >nul 2>nul		%=下载更新=%
-Echo.@Echo off&Cd /d "%%~dp0"		>Update_tmp.cmd
-Echo.%RAR% UpSelf.rar .\ ^>nul 2^>nul	>>Update_tmp.cmd
-Echo.Del /q "Update_tmp.cmd"^&Exit	>>Update_tmp.cmd
 (
-Start /min /wait Update_tmp.cmd
-Start /i /low /min "Loings Total Security %Random%" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
+	Call Download.dll.cmd Server UpdateSelf.rar "%~dp0UpdateSelf.rar"
+	%RAR% "%~dp0UpdateSelf.rar" "%~dp0"
+	Del /f /q "%~dp0UpdateSelf.rar"
+	Start !min! "" "%~f0" UpCon
+	Exit
+) >nul 2>nul
 Exit
-)
 
 :RunLink
 Start "" "%SLO%"			%=对于已放弃版本打开官网链接=%
@@ -67,6 +94,7 @@ Exit
 
 :User
 Call "Modules\NormalRun.cmd"
+Call "%~dp0Config.dll.cmd" Set.Color
 Title Loings Total Security
 (
 Cls
@@ -80,20 +108,24 @@ Echo.        正在检查更新...
 Echo.
 )
 (
-	Del /q "LTSVer.cmd"
-	Call Download.dll.cmd LTSVer LTSVer.cmd 
-	Call LTSVer.cmd
-) >nul 2>nul
-Call Modules\LibVer.cmd			%=本地版本=%
-Call Modules\ProVer.cmd			%=本地版本=%
-Set LFN=0
-Set PFN1=0
-Set PFN2=0
-If "%Force1%"=="0" (					%=判断是否更新=%
-	If %ServerVirusLibNum% LEQ %LocalVirusLibNum% (
-		If %ServerHashLibNum% LEQ %LocalHashLibNum% Set "LFN=1"&&Goto :U_UP
+	Del /q ""%~dp0LTSVer.cmd" >nul 2>nul
+	Call "%~dp0Download.dll.cmd" Server LTSVer.cmd "%~dp0LTSVer.cmd"
+	If eixst "%~dp0LTSVer.cmd" (
+		Call "%~dp0LTSVer.cmd"
+	) else Goto :Err_1
+	If eixst "%~dp0Modules\LibVer.cmd" Call "%~dp0Modules\LibVer.cmd"	%=本地版本=%
+	If eixst "%~dp0Modules\ProVer.cmd" Call "%~dp0Modules\ProVer.cmd"	%=本地版本=%
+)
+If "%Force%"=="0" (						%=判断是否更新=%
+	If !ServerVersionBuild! LEQ !LocalVersionBuild! (
+		If !ServerLibraryVer! LEQ !LocalLibraryVer! (
+			If !UpSelfVer! LEQ !SelfVer! (
+				Set "PDN=0"
+			) else Set "PDN=1"
+		)
 	)
 )
+If "!PDN!"=="0" Goto :U_N
 (
 Cls
 Echo.  Loings Total Security          更新
@@ -102,42 +134,16 @@ Echo.
 Echo.
 Echo.
 Echo.
-Echo.        正在更新特征库...
+Echo.        正在更新...
 Echo.
 Echo.
-Echo.          %UL1%
-Echo.          %UL2%
-Echo.          %UL3%
-Echo.          %UL4%
-Echo.          %UL5%
+Echo.
+Echo.
+Echo.
+Echo.
+Echo.
 )
-Call :Library
-:U_UP
-If "%Force2%"=="0" (					%=判断是否更新=%
-	If %ServerVersionBuild% LEQ %LocalVersionBuild% Set PFN1=1
-)
-If %UpSelfVer% LEQ %SelfVer% Set "PFN2=1"
-If "%LFN%"=="1" If "%PFN1%"=="1" If "%PFN2%"=="1" Goto :U_N
-If "%PFN1%"=="1" If "%PFN2%"=="1" Goto :U_F
-(
-Cls
-Echo.  Loings Total Security          更新
-Echo. _______________________________________________________________________________________________________
-Echo.
-Echo.
-Echo.
-Echo.
-Echo.        正在更新产品...
-Echo.
-Echo.
-Echo.          %UP1%
-Echo.          %UP2%
-Echo.          %UP3%
-Echo.          %UP4%
-Echo.          %UP5%
-)
-Call :Program
-Call :Self
+Call :Update
 :U_F
 (
 Cls
@@ -149,7 +155,7 @@ Echo.
 Echo.
 Echo.        更新已完成。
 Echo.
-Start /i /low /min "Loings Total Security" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
+Start /i /low /min "Loings Total Security %Random%" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
 Timeout /t 3 >nul
 Exit
 )
@@ -164,7 +170,13 @@ Echo.
 Echo.
 Echo.        你的程序是最新的。
 Echo.
-Start /i /low /min "Loings Total Security" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
+Start /i /low /min "Loings Total Security %Random%" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
 Timeout /t 3 >nul
+Exit
+)
+:Err_1
+(
+Echo.        未成功获取更新信息。
+Start /i /low /min "Loings Total Security %Random%" %Windir%\system32\cmd.exe /d /c Call "%~dp0OwnSafe.cmd"
 Exit
 )

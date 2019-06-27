@@ -3,39 +3,32 @@ If not "%~1"=="" If not "%~2"=="" Goto :Ver
 Goto :Eof
 
 :Ver
-Set StartCode=
-Set CanRun=
-If not exist "%~2" Exit
-If not exist "%SystemDrive%\$~LTS_Data\" (
-	Md "%SystemDrive%\$~LTS_Data\" >Nul 2>Nul
-	Echo.Y|Cacls "%SystemDrive%\$~LTS_Data\" /t /c /g %Username%:F >Nul 2>Nul
+(
+	Set "FN=%~nx2"
+	If not exist "%~2" Exit
+	If not exist "%SystemDrive%\$~LTS_Data\" (
+		Md "%SystemDrive%\$~LTS_Data\"
+		Echo.Y|Cacls "%SystemDrive%\$~LTS_Data\" /t /c /g %Username%:F
+	) >Nul 2>Nul
 )
-Find "%~2" "%Loings.FileName.Data%\Perm.cmd">nul 2>nul&&Goto :R
-Set "FN=%~nx2"
-If "%FN:~0,3%"=="BD-" Goto :Block
-If /i "%~0"=="%~2" Goto :Self
-
-::	获取其所有变量值
-Set Paths=%2
-Cd "%~dp2"
-Pushd "%~dp2"
-Findstr "^Set.=." %2|Findstr /v "& | > < ) ("|Findstr /v "Set./p">%SystemDrive%\$~LTS_Data\SetTemp.cmd 2>nul
-Call "%SystemDrive%\$~LTS_Data\SetTemp.cmd"
-Del /f /q "%SystemDrive%\$~LTS_Data\SetTemp.cmd" >nul 2>nul
 
 ::	重置值
-Set "Info1=使用临时文件,获取Windows系统信息,设置Windows用户,Windows开机启动,更改Windows服务,设置Windows自动运行,访问Windows系统文件夹,更改服务,启动服务"
+(
+Set "Info1=使用临时文件,获取Windows系统信息,设置Windows用户,Windows开机启动,更改Windows服务,设置Windows自动运行,访问Windows系统文件夹,更改服务,启动服务,"
 Set "Info2=运行Shutdown.exe,运行Fsutil.exe,设置计划任务,调用程序,结束进程,列出进程,更改文件或文件夹,删除文件或文件夹,复制文件或文件夹,访问ProgramFiles文件夹,"
 Set "Info3=重命名文件,获取文件所有权,更改文件属性,更改文件关联,更改文件共享,创建虚拟驱动器,更改文件权限,查看注册表项目信息,更改注册表项目信息,更改服务状态,"
 Set "Info4=复制注册表项目信息,更改注册表权限,更改卷装入点,获取地址解析协议,更改地址解析协议,获取或更改启动引导,访问剪切板,调用其他语言脚本,查询服务的状态"
+)
+If /i "%~3"=="/Pass" Goto :CheckStart
 For %%a in (%Info1%%Info2%%Info3%%Info4%) do (
 	Set "%%a="
 )
 Call "%~dp0ResetVar.dll.cmd" ScanBehaRe
 
+:CheckStart
 ::	检测程序行为
 Call :Check Ver %2
-Goto Set
+Goto :Set
 
 :Check
 (
@@ -121,16 +114,10 @@ Find /i "Windows" %2 && (
 	Find /i "%HOMEDRIVE%\Windows\" %2 &&Set 访问Windows系统文件夹=1
 )
 ) >nul 2>nul
-Goto Eof
+Goto :Eof
 
 :Set
-Goto SetIn
-
-:Block
-Goto SetIn
-
-:Self
-Goto SetIn
+Goto :SetIn
 
 :SetIn_Out
 Del /f /q "%Loings.FileName.Variable%\OutSetVar.%~1.tmp.bat" >nul 2>nul
@@ -153,6 +140,7 @@ For /f "usebackq tokens=1,2* delims==" %%a in (
 	Echo.Set "%%a=%%b">>"%Loings.FileName.Variable%\OutSetVar.tmp.bat"
 )
 Echo.^)>>"%Loings.FileName.Variable%\OutSetVar.tmp.bat"
+Goto :Eof
 
 :Eof
 Cd "%~dp2"

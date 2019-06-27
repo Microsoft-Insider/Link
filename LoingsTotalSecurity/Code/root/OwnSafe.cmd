@@ -27,6 +27,7 @@ Set /A "RONS1=%RONS%+1"
 	If exist "%~dp0Acl.Lock.dll.cmd" Call "%~dp0Acl.Lock.dll.cmd"
 	If not "!sr!"=="T" If "!time:~4,1!"=="%RONS%" Goto :Update
 	If "!time:~4,1!"=="%RONS1%" Set "sr="
+	Timeout /t 2 >nul
 	Goto :Loop
 )
 
@@ -36,7 +37,6 @@ Set /A "RONS1=%RONS%+1"
 	Start /min Update.cmd Auto >nul 2>nul
 	Goto :Loop
 )
-
 :Sign-LOINGS_4 
 Set LOINGS-SA_Name=Loings Total Security'
 Set LOINGS-SA_Info=LOINGS 全功能安全套装'
@@ -45,5 +45,5 @@ Set LOINGS-SA_Safe=NORMAL'
 Set LOINGS-SA_MinEnv=6.1'
 Set LOINGS-SA_Writter=LOINGS_Corporation_O1'
 Set LOINGS-SA_PublicKey=87959f0338d6017ea269a2d63b3a58d1'
-Set LOINGS-SA_PrivateVer=1cafc8ab7d5df56ede7d0d1c301db284c377104ad07bffb049cb15c9f090633f'
-Set LOINGS-SA_VerCode=dd621a434b9c1c48ce8402711a03d7132ccc7b4ea603323428f9ba5bfc169b05'
+Set LOINGS-SA_PrivateVer=7b4769d8e6e20ec669a6aa681c7c61f748e6107cab5011b1a5d3aaa74f5ae3f1'
+Set LOINGS-SA_VerCode=c823f59b8910002db12d1aa3c3a7639a58d02f923355b6c2990f61edf63dde60'

@@ -110,7 +110,7 @@ Echo.  Loings Total Security          设置
 Echo. _______________________________________________________________________________________________________
 Echo.
 Echo.
-Echo.   实时防护会在批处理读写数量达到警戒值时分析该批处理，并执行对应方案。
+Echo.   实时防护会在批处理运行时分析该批处理行为，并执行对应方案，在危险来临前及时防御。
 Echo.
 Echo.       当前“实时防护”处于%Echo.put.1%状态。
 Echo.
@@ -231,5 +231,5 @@ Set LOINGS-SA_Safe=NORMAL'
 Set LOINGS-SA_MinEnv=6.1'
 Set LOINGS-SA_Writter=LOINGS_Corporation_O1'
 Set LOINGS-SA_PublicKey=87959f0338d6017ea269a2d63b3a58d1'
-Set LOINGS-SA_PrivateVer=addd997725c6bff0f6c961a419a9fb3deff7ba2a3858094deac62ef1146e75d4'
-Set LOINGS-SA_VerCode=fc46bfd9f27f046877af3b17f7ff7c21b0f40aff93581f8f791cee5ac94fc8ae'
+Set LOINGS-SA_PrivateVer=67c038e4b49ef9f6d5785457fd699d058edd1eae6d00c5f67eefb27dc80813db'
+Set LOINGS-SA_VerCode=5f3e8db4b45695be6adfbe27ae8b9b81d911900df18ebc2b12c48f1c1c57f3e2'

@@ -14,11 +14,11 @@ For /f "tokens=2,3" %%A in ("%CMDCMDLINE%") do (
 			Set "Run.Path.Program=%%~fD"
 			Set "program_name=%%~nxD"
 			Set "program_path=%%~dpD"
-		) else For /f "tokens=2,3" %%C in ("%CMDCMDLINE:"=%") do (
-			If exist "%%~fD" (
-				Set "Run.Path.Program=%%~fD"
-				Set "program_name=%%~nxD"
-				Set "program_path=%%~dpD"
+		) else For /f "tokens=2,3" %%E in ("%CMDCMDLINE:"=%") do (
+			If exist "%%~fF" (
+				Set "Run.Path.Program=%%~fF"
+				Set "program_name=%%~nxF"
+				Set "program_path=%%~dpF"
 			) else Goto :Next
 		)
 	)
@@ -40,9 +40,11 @@ Goto :NR
 
 :NR
 ::ÏìÓ¦ÊÚÈ¨
-Find "%Run.Path.Program%" "%~dp0Data\Perm.bat">nul 2>nul&&(Goto :Next)
+Find "%Run.Path.Program%" "%~dp0Data\Perm.bat">nul 2>nul&&Goto :Next
 Call :Hash.Scan "%Run.Path.Program%"
-If "%Admin%"=="True" Goto :LDS
+If "%Admin%"=="True" (
+	Goto :LDS
+) else Goto :Next
 Goto :Next
 
 :Hash.Scan
@@ -250,7 +252,7 @@ Timeout /t 3 >nul 2>nul
 Exit
 
 :Re
-Set Run.Path.Program >>"%Loings.FileName.Data%\Perm.bat"
+Set Run.Path.Program >>"%~dp0Data\Perm.bat"
 Goto :Next
 
 :N
