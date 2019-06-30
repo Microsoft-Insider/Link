@@ -1,5 +1,0 @@
-Set "GSD="
-Set "DSD="
-Set "TES=True"
-Set "T=3"
-Set "P="
