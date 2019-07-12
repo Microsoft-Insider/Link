@@ -5,7 +5,7 @@
 	Set "ServerHashLibNum=98"
 
 ::	Program
-	Set "ServerVersionBuild=18"
+	Set "ServerVersionBuild=19"
 
 ::	Self
 	Set "UpSelfVer=5"
@@ -14,9 +14,12 @@
 	Set "Force1=0"
 	Set "Force2=0"
 	Set "GiveUpVer=0"
-	Set "ChangeTime=12:58 2019/6/30"
+	Set "ChangeTime=19:44 2019/7/12"
 
 ::	UpdateInfo
+::	Build 18 To New
+	Set "Update.18toNew.1=Code;root/Scan.cmd.rar;root\Scan.cmd.rar;root\"
+	Set "Update.18toNew.2=Code;root/Modules/ProVer.cmd.rar;root\Modules\ProVer.cmd.rar;root\Modules\"
 ::	Build 17 To New
 	Set "Update.17toNew.1=Same;16"
 ::	Build16 To New
