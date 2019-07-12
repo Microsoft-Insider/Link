@@ -26,5 +26,6 @@
 	Set "Update.16toNew.4=Code;root/Permissions.dll.cmd.rar;root\Permissions.dll.cmd.rar;root\"
 	Set "Update.16toNew.5=Code;root/SafetyCenter.dll.cmd.rar;root\SafetyCenter.dll.cmd.rar;root\"
 	Set "Update.16toNew.6=Code;root/ActiveDefense.bat.rar;root\ActiveDefense.bat.rar;root\"
-	Set "Update.16toNew.7=Code;root/Modules/ProVer.cmd.rar;root\Modules\ProVer.cmd.rar;root\Modules\"
+	Set "Update.16toNew.7=Code;root/Scan.cmd.rar;root\Scan.cmd.rar;root\"
+	Set "Update.16toNew.8=Code;root/Modules/ProVer.cmd.rar;root\Modules\ProVer.cmd.rar;root\Modules\"
 )
