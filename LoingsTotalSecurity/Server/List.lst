@@ -2,7 +2,6 @@ Acl.Lock.dll.cmd.rar
 Acl.Unlock.dll.cmd.rar
 ActiveDefense.bat.rar
 ActiveDefenseIni.cmd.rar
-Choice.exe
 Clear.dll.cmd.rar
 Config.dll.cmd.rar
 Deleter.cmd.rar
@@ -36,7 +35,6 @@ Modules/GUID.vbs
 Modules/LibVer.cmd.rar
 Modules/NormalRun.cmd.rar
 Modules/ProVer.cmd.rar
-Modules/rar.exe
 Modules/rarreg.key
 Modules/Select_File.cmd.rar
 Registry/SafetyCenter/RuntimeProtect/True.cmd.rar
