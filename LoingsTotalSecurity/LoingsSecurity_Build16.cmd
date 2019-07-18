@@ -98,7 +98,6 @@ Call :INSE "释放安装文件 2/2"
 Call :O_Install
 Call :INSE "创建安装目录"
 (
-	Md "%Paths%"
 	Md "%Paths%\root\Data"
 	Md "%Paths%\root\Temp"
 	Md "%Paths%\root\Logs"
