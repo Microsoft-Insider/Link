@@ -9,6 +9,7 @@ Temp
 Variable
 RecoveryArea\$~@DangerousProcedure.{S-1-5-21-3735454642}
 Registry\SafetyCenter\ActiveDefense
+Registry\SafetyCenter\BehaControl
 Registry\SafetyCenter\RuntimeProtect
 Registry\SafetyCenter\SelfProtect
 Tools\CMDSV
