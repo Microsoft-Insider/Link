@@ -4,26 +4,28 @@
 	Set "ServerVirusLibNum=85"
 	Set "ServerHashLibNum=98"
 ::Program
-	Set "ServerVersionBuild=21"
+	Set "ServerVersionBuild=22"
 ::Self
 	Set "UpSelfVer=6"
 ::Other
 	Set "Force1=0"
 	Set "Force2=0"
 	Set "GiveUpVer=0"
-	Set "ChangeTime=13:47 2019/8/10"
+	Set "ChangeTime=16:57 2019/8/11"
 ::UpdateInfo
+	Set "Update.21toNew.1=Code;root/UI.dll.cmd.rar;root\UI.dll.cmd.rar;root\"
+	Set "Update.21toNew.2=Code;root/ActiveDefense.bat.rar;root\ActiveDefense.bat.rar;root\"
+	Set "Update.21toNew.3=Code;root/SafetyCenter.dll.cmd.rar;root\SafetyCenter.dll.cmd.rar;root\"
+	Set "Update.21toNew.4=Code;root/Modules/ProVer.cmd.rar;root\Modules\ProVer.cmd.rar;root\Modules\"
+
 	Set "Update.20toNew.1=Self"
-	Set "Update.20toNew.2=Code;root/UI.dll.cmd.rar;root\UI.dll.cmd.rar;root\"
 	Set "Update.20toNew.3=Code;root/Main.cmd.rar;root\Main.cmd.rar;root\"
 	Set "Update.20toNew.4=Code;root/Tools.cmd.rar;root\Tools.cmd.rar;root\"
 	Set "Update.20toNew.5=Code;root/Config.dll.cmd.rar;root\Config.dll.cmd.rar;root\"
-	Set "Update.20toNew.6=Code;root/SafetyCenter.dll.cmd.rar;root\SafetyCenter.dll.cmd.rar;root\"
 	Set "Update.20toNew.7=Code;root/RuntimeProtect.cmd.rar;root\RuntimeProtect.cmd.rar;root\"
-	Set "Update.20toNew.8=Code;root/ActiveDefense.bat.rar;root\ActiveDefense.bat.rar;root\"
 	Set "Update.20toNew.9=Code;root/BehaControl.bat.rar;root\BehaControl.bat.rar;root\"
 	Set "Update.20toNew.10=Code;root/Scan_b.cmd.rar;root\Scan_b.cmd.rar;root\"
-	Set "Update.20toNew.11=Code;root/Modules/ProVer.cmd.rar;root\Modules\ProVer.cmd.rar;root\Modules\"
+	Set "Update.20toNew.12=Same;21"
 
 	Set "Update.19toNew.1=Code;root/Uninst.cmd.rar;root\Uninst.cmd.rar;root\"
 	Set "Update.19toNew.4=Code;root/Shell.Real.dll.cmd.rar;root\Shell.Real.dll.cmd.rar;root\"
