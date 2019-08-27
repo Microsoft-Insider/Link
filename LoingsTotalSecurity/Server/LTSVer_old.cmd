@@ -6,12 +6,12 @@
 ::Program
 	Set "ServerVersionBuild=22"
 ::Self
-	Set "UpSelfVer=6"
+	Set "UpSelfVer=7"
 ::Other
 	Set "Force1=0"
 	Set "Force2=0"
 	Set "GiveUpVer=0"
-	Set "ChangeTime=16:57 2019/8/11"
+	Set "ChangeTime=1:16 2019/8/28"
 ::UpdateInfo
 	Set "Update.21toNew.1=Code;root/UI.dll.cmd.rar;root\UI.dll.cmd.rar;root\"
 	Set "Update.21toNew.2=Code;root/ActiveDefense.bat.rar;root\ActiveDefense.bat.rar;root\"
