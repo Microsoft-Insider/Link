@@ -1,13 +1,13 @@
 @(
 ::Library
-	Set "ServerLibraryVer=19081001"
-	Set "ServerVirusLibNum=85"
+	Set "ServerLibraryVer=19082901"
+	Set "ServerVirusLibNum=86"
 	Set "ServerHashLibNum=98"
 ::Program
-	Set "ServerVersionBuild=22"
+	Set "ServerVersionBuild=23"
 ::Self
 	Set "UpSelfVer=7"
 ::Other
 	Set "GiveUpVer=21"
-	Set "ChangeTime=23:51 2019/8/27"
+	Set "ChangeTime=11:10 2019/8/29"
 )
