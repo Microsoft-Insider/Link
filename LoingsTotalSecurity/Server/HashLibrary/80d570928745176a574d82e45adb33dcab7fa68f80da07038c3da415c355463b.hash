@@ -1,3 +1,1 @@
-FileStatus=Safe
-ProgramName=“Fiddler”的脚本
-Information=RunNsisUninstallers.
+FileStatus=Safe;ProgramName=“Fiddler”的脚本;Information=RunNsisUninstallers.
