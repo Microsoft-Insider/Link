@@ -13,6 +13,7 @@ Main.cmd.rar
 OwnSafe.cmd.rar
 Permissions.dll.cmd.rar
 ResetVar.dll.cmd.rar
+RunHide.dll.cmd
 Runner.cmd.rar
 RunScan.dll.cmd.rar
 RuntimeProtect.cmd.rar
@@ -24,7 +25,6 @@ Shell.CDE.dll.cmd.rar
 Shell.dll.cmd.rar
 Shell.Real.dll.cmd.rar
 SummonVar.dll.cmd.rar
-Taskmgr.cmd.rar
 Tools.cmd.rar
 UI.dll.cmd.rar
 Uninst.cmd.rar
@@ -40,14 +40,11 @@ Modules/NormalRun.cmd.rar
 Modules/ProVer.cmd.rar
 Modules/rarreg.key
 Modules/Select_File.cmd.rar
+Registry/SafetyCenter/ActiveDefense/True.cmd.rar
 Registry/SafetyCenter/RuntimeProtect/True.cmd.rar
 Registry/SafetyCenter/SelfProtect/True.cmd.rar
 Tools/DigitalSignature.cmd.rar
 Tools/Exp_dll.cmd.rar
-Tools/HashGetTool.cmd.rar
-Tools/CMDSV/#TSC_Core.cmd.rar
-Tools/CMDSV/#TSC_Start.cmd.rar
-Tools/CMDSV/#TSC_SV.cmd.rar
-Tools/Deleter/Config.info.cmd.rar
-Tools/Deleter/Deleter.cmd.rar
-Tools/Deleter/DeleterUI.cmd.rar
+Tools/Config.info.cmd.rar
+Tools/Deleter.cmd.rar
+Tools/DeleterUI.cmd.rar

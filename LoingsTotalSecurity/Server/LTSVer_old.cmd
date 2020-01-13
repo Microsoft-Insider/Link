@@ -1,17 +1,17 @@
 @(
 ::Library
-	Set "ServerLibraryVer=19082901"
+	Set "ServerLibraryVer=20011301"
 	Set "ServerVirusLibNum=86"
 	Set "ServerHashLibNum=98"
 ::Program
-	Set "ServerVersionBuild=23"
+	Set "ServerVersionBuild=24"
 ::Self
-	Set "UpSelfVer=7"
+	Set "UpSelfVer=8"
 ::Other
 	Set "Force1=0"
 	Set "Force2=0"
 	Set "GiveUpVer=0"
-	Set "ChangeTime=11:13 2019/8/29"
+	Set "ChangeTime=20:20 2020/1/13"
 ::UpdateInfo
 	Set "Update.22toNew.1=Self"
 
@@ -21,8 +21,6 @@
 	Set "Update.21toNew.4=Code;root/Modules/ProVer.cmd.rar;root\Modules\ProVer.cmd.rar;root\Modules\"
 
 	Set "Update.20toNew.1=Self"
-	Set "Update.20toNew.3=Code;root/Main.cmd.rar;root\Main.cmd.rar;root\"
-	Set "Update.20toNew.4=Code;root/Tools.cmd.rar;root\Tools.cmd.rar;root\"
 	Set "Update.20toNew.5=Code;root/Config.dll.cmd.rar;root\Config.dll.cmd.rar;root\"
 	Set "Update.20toNew.7=Code;root/RuntimeProtect.cmd.rar;root\RuntimeProtect.cmd.rar;root\"
 	Set "Update.20toNew.9=Code;root/BehaControl.bat.rar;root\BehaControl.bat.rar;root\"
